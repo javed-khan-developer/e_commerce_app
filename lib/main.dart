@@ -1,3 +1,6 @@
+import 'package:e_commerce_app/config/app_router.dart';
+import 'package:e_commerce_app/config/theme.dart';
+import 'package:e_commerce_app/screens/screens.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,28 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'E-COMMERCE-APP',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('E-COM'),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [],
-      ),
+      theme: theme(),
+      onGenerateRoute: AppRouter.onGenerateRoute,
+      initialRoute: HomeScreen.routeName,
+      home: const HomeScreen(),
     );
   }
 }
