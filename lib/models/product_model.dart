@@ -25,10 +25,10 @@ class Product extends Equatable {
         isRecommended,
         isPopular,
       ];
-  static final List<Product> products = [
+  static List<Product> products = [
     const Product(
       name: 'Soft drink #1',
-      category: 'Soft Drinks',
+      category: 'Soft Drink',
       imageUrl:
           'https://images.unsplash.com/photo-1556710807-a9261921475f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c29mdGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
       price: 3.99,
@@ -37,7 +37,7 @@ class Product extends Equatable {
     ),
     const Product(
       name: 'Soft drink #2',
-      category: 'Soft Drinks',
+      category: 'Soft Drink',
       imageUrl:
           'https://images.unsplash.com/photo-1556710807-a9261921475f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c29mdGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
       price: 3.99,
@@ -46,7 +46,16 @@ class Product extends Equatable {
     ),
     const Product(
       name: 'Soft drink #3',
-      category: 'Soft Drinks',
+      category: 'Soft Drink',
+      imageUrl:
+          'https://images.unsplash.com/photo-1556710807-a9261921475f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c29mdGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
+      price: 3.99,
+      isRecommended: true,
+      isPopular: false,
+    ),
+    const Product(
+      name: 'Soft drink #4',
+      category: 'Soft Drink',
       imageUrl:
           'https://images.unsplash.com/photo-1556710807-a9261921475f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c29mdGRyaW5rfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
       price: 3.99,

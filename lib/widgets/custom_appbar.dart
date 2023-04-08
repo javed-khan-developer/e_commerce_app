@@ -12,9 +12,10 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
+      centerTitle: true,
       title: Container(
-        color: Colors.black,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        color: Colors.green,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         child: Text(
           title,
           style: Theme.of(context)
@@ -23,7 +24,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
               .copyWith(color: Colors.white),
         ),
       ),
-      iconTheme: const IconThemeData(color: Colors.black),
+      iconTheme: const IconThemeData(color: Colors.green),
       actions: [
         IconButton(
             onPressed: () {
