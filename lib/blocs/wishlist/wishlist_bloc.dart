@@ -23,8 +23,8 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
   Stream<WishlistState> _mapStartWishlistToState() async* {
     yield WishlistLoading();
     try {
-      await Future<void>.delayed(Duration(seconds: 1));
-      yield WishlistLoaded();
+      await Future<void>.delayed(const Duration(seconds: 1));
+      yield const WishlistLoaded();
     } catch (_) {}
   }
 
