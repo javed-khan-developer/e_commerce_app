@@ -18,92 +18,154 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(title: 'Cart'),
-      bottomNavigationBar: const CustomNavBar(),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.green,
+        child: SizedBox(
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                onPressed: () {},
+                child: Text(
+                  'GO TO CHECKOUT',
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
               children: [
-                Text(
-                  'Add \$20 for free delivery',
-                  style: Theme.of(context).textTheme.titleMedium,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      Cart().freeDeliveryString,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        elevation: 0,
+                        shape: const RoundedRectangleBorder(),
+                      ),
+                      child: Text(
+                        'Add More Items',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(color: Colors.white),
+                      ),
+                    ),
+                  ],
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    elevation: 0,
-                    shape: const RoundedRectangleBorder(),
-                  ),
-                  child: Text(
-                    'Add More Items',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(color: Colors.white),
+                const SizedBox(height: 10),
+                SizedBox(
+                  height: 350,
+                  child: ListView.builder(
+                    itemCount: Cart().products.length,
+                    itemBuilder: (context, index) {
+                      return CartProductCard(product: Product.products[index]);
+                    },
                   ),
                 ),
               ],
             ),
-            CartProductCard(
-              product: Product.products[0],
+            Column(
+              children: [
+                const Divider(color: Colors.black),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'subtotal'.toUpperCase(),
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          Text(
+                            '\$${Cart().subTotalString}',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Delivery fee'.toUpperCase(),
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          Text(
+                            '\$${Cart().deliveryFeeString}',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Stack(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.black.withAlpha(50),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 50,
+                      margin: const EdgeInsets.all(5),
+                      decoration: const BoxDecoration(
+                        color: Colors.black,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Total'.toUpperCase(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(color: Colors.white),
+                            ),
+                            Text(
+                              '\$${Cart().totalString}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
             ),
           ],
         ),
       ),
-    );
-  }
-}
-
-class CartProductCard extends StatelessWidget {
-  final Product product;
-  const CartProductCard({super.key, required this.product});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Image.network(
-          product.imageUrl,
-          width: 100,
-          height: 80,
-          fit: BoxFit.cover,
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                product.name,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              Text(
-                '\$${product.price}',
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(width: 10),
-        Row(
-          children: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.add_circle),
-            ),
-            Text('1', style: Theme.of(context).textTheme.titleMedium),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.remove_circle),
-            ),
-          ],
-        )
-      ],
     );
   }
 }
