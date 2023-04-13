@@ -1,4 +1,6 @@
+import 'package:e_commerce_app/blocs/cart/cart_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../models/models.dart';
 
@@ -35,18 +37,26 @@ class CartProductCard extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.add_circle),
-              ),
-              Text('1', style: Theme.of(context).textTheme.titleMedium),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.remove_circle),
-              ),
-            ],
+          BlocBuilder<CartBloc, CartState>(
+            builder: (context, state) {
+              return Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      context.read<CartBloc>().add(CartProductRemoved(product));
+                    },
+                    icon: const Icon(Icons.remove_circle),
+                  ),
+                  Text('1', style: Theme.of(context).textTheme.titleMedium),
+                  IconButton(
+                    onPressed: () {
+                      context.read<CartBloc>().add(CartProductAdded(product));
+                    },
+                    icon: const Icon(Icons.add_circle),
+                  ),
+                ],
+              );
+            },
           )
         ],
       ),
