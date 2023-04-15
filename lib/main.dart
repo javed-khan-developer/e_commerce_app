@@ -1,7 +1,7 @@
-import 'package:e_commerce_app/blocs/cart/cart_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'blocs/cart/cart_bloc.dart';
 import 'blocs/wishlist/wishlist_bloc.dart';
 import 'config/app_router.dart';
 import 'config/theme.dart';
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         title: 'E-COMMERCE-APP',
         theme: theme(),
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: HomeScreen.routeName,
+        initialRoute: SplashScreen.routeName,
       ),
     );
   }
